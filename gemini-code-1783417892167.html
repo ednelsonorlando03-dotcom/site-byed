@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>by.e.d. Beats</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b0b12;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #11111a;
+            padding: 20px 0;
+            border-bottom: 1px solid #222235;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #6366f1;
+        }
+
+        header nav a {
+            color: #aaaaaa;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #ffffff;
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #11111a 0%, #0b0b12 100%);
+        }
+
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #8a8a9e;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .btn-main {
+            background-color: #6366f1;
+            color: #ffffff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: #4f46e5;
+        }
+
+        .catalog, .about, .faq {
+            padding: 60px 0;
+        }
+
+        .catalog h3, .pricing h3, .how-it-works h3, .about h3, .faq h3 {
+            font-size: 28px;
+            margin-bottom: 40px;
+            text-align: center;
+            border-bottom: 2px solid #222235;
+            padding-bottom: 10px;
+        }
+
+        .beat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .beat-card {
+            background-color: #11111a;
+            border: 1px solid #222235;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .beat-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 6px;
+            background-color: #222235;
+        }
+
+        .beat-title {
+            font-size: 20px;
+            margin: 15px 0 5px 0;
+            font-weight: bold;
+        }
+
+        .beat-info {
+            color: #8a8a9e;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-buy {
+            flex: 1;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .btn-mz {
+            background-color: #25d366;
+            color: #fff;
+        }
+
+        /* Seção Sobre o Produtor */
+        .about {
+            background-color: #11111a;
+            border-top: 1px solid #222235;
+            border-bottom: 1px solid #222235;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            color: #cbcbdf;
+        }
+
+        .pricing {
+            padding: 60px 0;
+            background-color: #0b0b12;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .price-card {
+            background-color: #11111a;
+            border: 1px solid #222235;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
+        .price-card h4 {
+            font-size: 22px;
+            margin: 0 0 5px 0;
+            color: #6366f1;
+        }
+
+        .price-tag {
+            font-size: 15px;
+            color: #8a8a9e;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #25d366;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #222235;
+            padding-bottom: 15px;
+        }
+
+        .price-amount span {
+            font-size: 14px;
+            color: #aaaaaa;
+            display: block;
+            font-weight: normal;
+            margin-top: 4px;
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: #8a8a9e;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .price-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #25d366;
+        }
+
+        /* Seção de Termos / FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #11111a;
+            border: 1px solid #222235;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item h4 {
+            margin: 0 0 10px 0;
+            color: #6366f1;
+            font-size: 18px;
+        }
+
+        .faq-item p {
+            margin: 0;
+            color: #8a8a9e;
+            font-size: 15px;
+        }
+
+        .how-it-works {
+            background-color: #11111a;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 250px;
+            padding: 20px;
+        }
+
+        .step-item h4 {
+            color: #6366f1;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .payment-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .payment-box {
+            background-color: #0b0b12;
+            border: 1px solid #222235;
+            padding: 15px 25px;
+            border-radius: 6px;
+            min-width: 280px;
+        }
+
+        .payment-box h5 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #6366f1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .payment-box p {
+            margin: 0;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .payment-box span {
+            color: #25d366;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #07070a;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #222235;
+            color: #666677;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>by.e.d.</h1>
+            <nav>
+                <a href="#beats">Beats</a>
+                <a href="#sobre">O Produtor</a>
+                <a href="#licencas">Preços</a>
+                <a href="#como-funciona">Como Funciona</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Beats Exclusivos & Ambientais</h2>
+            <p>Encontre a sonoridade ideal para o seu próximo hit. Licenças flexíveis e suporte total.</p>
+            <a href="#beats" class="btn-main">Ouvir Catálogo</a>
+        </div>
+    </section>
+
+    <section class="catalog" id="beats">
+        <div class="container">
+            <h3>Catálogo de Instrumentais</h3>
+            <div class="beat-grid">
+
+                <div class="beat-card">
+                    <img src="capa1.png" alt="Capa do Beat">
+                    <div class="beat-title">(free)type sentimentos.byed</div>
+                    <div class="beat-info">Instrumental Exclusivo | Qualidade HD</div>
+                    
+                    <audio controls src="(free)type sentimentos.byed.mp3"></audio>
+<img src="capa2.png" alt="Capa do Beat">
+                     <audio controls src="type beat free pesadelos.mp3"></audio>
+
+
+                    <div class="btn-group">
+                        <a href="https://wa.me/258847532254?text=Olá%20by.e.d.,%20tenho%20interesse%20no%20beat%20(free)type%20sentimentos.%20Como%20podemos%20fechar?" target="_blank" class="btn-buy btn-mz">🇲🇿 Negociar via WhatsApp</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <div class="container">
+            <h3>A Identidade Sonora</h3>
+            <div class="about-content">
+                <p><strong>by.e.d.</strong> é o projeto focado em transformar sentimentos e atmosferas em texturas sonoras. Com uma produção detalhada no FL Studio, o objetivo é criar instrumentais imersivos, melodias marcantes e texturas ambientais que deem profundidade e espaço para a voz dos artistas. Cada beat é trabalhado de forma única para garantir o máximo impacto profissional no estúdio e nas plataformas digitais.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="licencas">
+        <div class="container">
+            <h3>Tabela de Preços & Licenças</h3>
+            <div class="price-grid">
+                
+                <div class="price-card">
+                    <h4>Licença Padrão</h4>
+                    <div class="price-tag">Ficheiro MP3</div>
+                    <div class="price-amount">
+                        1.000 MT
+                        <span>ou $20 USD (Internacional)</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>Áudio em alta qualidade (MP3)</li>
+                        <li>Uso para plataformas de streaming</li>
+                        <li>Ideal para gravação de demos</li>
+                        <li>Direito de uso comercial limitado</li>
+                    </ul>
+                </div>
+
+                <div class="price-card">
+                    <h4>Licença Pro</h4>
+                    <div class="price-tag">Ficheiro WAV</div>
+                    <div class="price-amount">
+                        2.500 MT
+                        <span>ou $40 USD (Internacional)</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>Áudio em máxima qualidade (WAV)</li>
+                        <li>Ideal para mixagem profissional</li>
+                        <li>Maior limite de reproduções</li>
+                        <li>Livre de marcas d'água (tags)</li>
+                    </ul>
+                </div>
+
+                <div class="price-card">
+                    <h4>Licença Exclusiva</h4>
+                    <div class="price-tag">Stems / Projeto Total</div>
+                    <div class="price-amount">
+                        8.000 MT
+                        <span>ou $150 USD (Internacional)</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>Propriedade exclusiva do Beat</li>
+                        <li>Ficheiros separados (Trackout/Stems)</li>
+                        <li>O beat é retirado do catálogo</li>
+                        <li>Contrato de exclusividade total</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h3>Termos de Uso & Direitos</h3>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h4>Os beats têm Tags (Marcas d'água)?</h4>
+                    <p>As prévias do site contêm tags de proteção. Ao adquirir qualquer licença comercial (Padrão, Pro ou Exclusiva), receberás o ficheiro limpo e em alta qualidade para gravação.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Posso colocar a música no Spotify / Apple Music?</h4>
+                    <p>Sim. Todas as licenças permitem a distribuição em plataformas digitais, respeitando os limites de reprodução de cada plano.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>O que acontece se eu comprar a Licença Exclusiva?</h4>
+                    <p>O beat torna-se teu por inteiro e eu retiro-o imediatamente do catálogo do site. Ninguém mais poderá adquirir essa faixa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <h3>Como Adquirir o seu Beat</h3>
+            <div class="steps">
+                <div class="step-item">
+                    <h4>1. Escolha a Faixa</h4>
+                    <p>Ouça a prévia no catálogo acima e veja a licença que melhor se adapta ao teu projeto.</p>
+                </div>
+                <div class="step-item">
+                    <h4>2. Entre em Contacto</h4>
+                    <p>Clique no botão do WhatsApp. Diz-me qual é o beat e a licença que pretendes para fecharmos o acordo.</p>
+                </div>
+                <div class="step-item">
+                    <h4>3. Receba os Arquivos</h4>
+                    <p>Após a confirmação do pagamento, os arquivos limpos e sem tags são enviados imediatamente por e-mail ou link de download.</p>
+                </div>
+            </div>
+
+            <div class="payment-container">
+                <div class="payment-box">
+                    <h5>🇲🇿 Pagamento Nacional</h5>
+                    <p><span>M-Pesa</span> | <span>e-Mola</span> | Transferência Bancária</p>
+                </div>
+                <div class="payment-box">
+                    <h5>🌐 Pagamento Internacional</h5>
+                    <p><span>PayPal</span> | Cartão de Crédito / <span>Visa</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 by.e.d. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
